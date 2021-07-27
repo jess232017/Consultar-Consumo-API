@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const githubUrl = "https://www.ine.gob.ni/DGE/CalculoFactura/CalculoFactura.php";
+        const url = `https://api.allorigins.win/get?url=${ encodeURIComponent( githubUrl) }`;
+
+        async function consultarConsumo() {
+            try {
+                let myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+                myHeaders.append("Cookie", "PHPSESSID=jlc45s26l6pvrsdv5l71b07dp1");
+
+                let urlencoded = new URLSearchParams();
+                urlencoded.append("CboTarifa", "1");
+                urlencoded.append("CboDepartamento", "11");
+                urlencoded.append("CboMunicipio", "106");
+                urlencoded.append("TxtFechaFacturaAnterior", "15-06-2021");
+                urlencoded.append("TxtFechaFactura", "15-07-2021");
+                urlencoded.append("TxtActiva", "137");
+                urlencoded.append("TxtActivaPunta", "");
+                urlencoded.append("TxtActivaFueraPunta", "");
+                urlencoded.append("TxtDemanda", "");
+                urlencoded.append("TxtDemandaPunta", "");
+                urlencoded.append("TxtDemandaFueraPunta", "");
+                urlencoded.append("TxtReactiva", "");
+                urlencoded.append("RdbCalcularAP", "Si");
+                urlencoded.append("TxtCaptcha", "lento");
+                urlencoded.append("BtnCalcular", "Calcular Factura");
+                urlencoded.append("__EVENTTARGET", "BtnCalcular");
+                urlencoded.append("__EVENTARGUMENT", "lento");
+                urlencoded.append("HfIsPostBack", "1");
+                urlencoded.append("HfConsumo", "30 días (4.50 kWh por día).");
+                urlencoded.append("HfDiasFacturados", "30");
+                urlencoded.append("HfPromedioConsumo", "4.50");
+                urlencoded.append("HfBaseCalculo", "1");
+                urlencoded.append("HfMensaje", "");
+
+                let requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: urlencoded,
+                    redirect: 'follow'
+                };
+
+
+
+                const respuesta = await fetch(url, requestOptions);
+
+                console.log("------------------------------------------- respuesta");
+
+                console.log(respuesta);
+
+                const resultado = await respuesta.text();
+
+                const cadena = resultado.contents;
+
+                console.log("------------------------------------------- resultado");
+
+                console.log(resultado);
+                console.log("------------------------------------------- resultado.contents");
+
+                console.log(resultado.contents);
+                // esta es la palabra a buscar
+                let termino = "<!-- GB: INICIO - Factura -->";
+                // para buscar la palabra hacemos
+                let posicion = cadena.indexOf(termino);
+                console.log("------------------------------------------- posicion");
+
+                console.log(posicion)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function hlf() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+            myHeaders.append("Cookie", "PHPSESSID=9g8fq44mje3jr35sb250ee12m2");
+
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("CboTarifa", "1");
+            urlencoded.append("CboDepartamento", "11");
+            urlencoded.append("CboMunicipio", "106");
+            urlencoded.append("TxtFechaFacturaAnterior", "15-06-2021");
+            urlencoded.append("TxtFechaFactura", "15-07-2021");
+            urlencoded.append("TxtActiva", "137");
+            urlencoded.append("TxtActivaPunta", "");
+            urlencoded.append("TxtActivaFueraPunta", "");
+            urlencoded.append("TxtDemanda", "");
+            urlencoded.append("TxtDemandaPunta", "");
+            urlencoded.append("TxtDemandaFueraPunta", "");
+            urlencoded.append("TxtReactiva", "");
+            urlencoded.append("RdbCalcularAP", "Si");
+            urlencoded.append("TxtCaptcha", "lento");
+            urlencoded.append("BtnCalcular", "Calcular Factura");
+            urlencoded.append("__EVENTTARGET", "BtnCalcular");
+            urlencoded.append("__EVENTARGUMENT", "lento");
+            urlencoded.append("HfIsPostBack", "1");
+            urlencoded.append("HfConsumo", "30 días (4.50 kWh por día).");
+            urlencoded.append("HfDiasFacturados", "30");
+            urlencoded.append("HfPromedioConsumo", "4.50");
+            urlencoded.append("HfBaseCalculo", "1");
+            urlencoded.append("HfMensaje", "");
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: 'follow'
+            };
+
+            fetch(url, requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        }
+
+        function hlg() {
+            var data = "CboTarifa=1&CboDepartamento=11&CboMunicipio=106&TxtFechaFacturaAnterior=15-06-2021&TxtFechaFactura=15-07-2021&TxtActiva=137&TxtActivaPunta=&TxtActivaFueraPunta=&TxtDemanda=&TxtDemandaPunta=&TxtDemandaFueraPunta=&TxtReactiva=&RdbCalcularAP=Si&TxtCaptcha=lento&BtnCalcular=Calcular%20Factura&__EVENTTARGET=BtnCalcular&__EVENTARGUMENT=lento&HfIsPostBack=1&HfConsumo=30%20d%C3%ADas%20(4.50%20kWh%20por%20d%C3%ADa).&HfDiasFacturados=30&HfPromedioConsumo=4.50&HfBaseCalculo=1&HfMensaje=";
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("POST", url);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.send(data);
+        }
+
+        function fdm() {
+            var axios = require('axios');
+            var qs = require('qs');
+            var data = qs.stringify({
+                'CboTarifa': '1',
+                'CboDepartamento': '11',
+                'CboMunicipio': '106',
+                'TxtFechaFacturaAnterior': '15-06-2021',
+                'TxtFechaFactura': '15-07-2021',
+                'TxtActiva': '137',
+                'TxtActivaPunta': '',
+                'TxtActivaFueraPunta': '',
+                'TxtDemanda': '',
+                'TxtDemandaPunta': '',
+                'TxtDemandaFueraPunta': '',
+                'TxtReactiva': '',
+                'RdbCalcularAP': 'Si',
+                'TxtCaptcha': 'lento',
+                'BtnCalcular': 'Calcular Factura',
+                '__EVENTTARGET': 'BtnCalcular',
+                '__EVENTARGUMENT': 'lento',
+                'HfIsPostBack': '1',
+                'HfConsumo': '30 días (4.50 kWh por día).',
+                'HfDiasFacturados': '30',
+                'HfPromedioConsumo': '4.50',
+                'HfBaseCalculo': '1',
+                'HfMensaje': ''
+            });
+            var config = {
+                method: 'post',
+                url,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Cookie': 'PHPSESSID=9g8fq44mje3jr35sb250ee12m2'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then(function(response) {
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+
+        consultarConsumo();
+        hlf();
+        hlg();
+        fdm();
+    </script>
+</body>
+
+</html>
