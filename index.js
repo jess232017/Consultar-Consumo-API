@@ -35,7 +35,7 @@ async function obtenerCalculo(objCalcular) {
         '__EVENTARGUMENT': 'lento',
         'HfIsPostBack': '1',
         'HfConsumo': '30 días (4.50 kWh por día).',
-        'HfDiasFacturados': '30',
+        'HfDiasFacturados': objCalcular.HfDiasFacturados,
         'HfPromedioConsumo': '4.50',
         'HfBaseCalculo': '1',
         'HfMensaje': ''
