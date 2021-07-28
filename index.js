@@ -35,7 +35,7 @@ async function obtenerCalculo(objCalcular) {
         '__EVENTARGUMENT': 'lento',
         'HfIsPostBack': '1',
         'HfConsumo': '30 días (4.50 kWh por día).',
-        'HfDiasFacturados': objCalcular.HfDiasFacturados,
+        'HfDiasFacturados': '30',
         'HfPromedioConsumo': '4.50',
         'HfBaseCalculo': '1',
         'HfMensaje': ''
@@ -97,7 +97,33 @@ function mejorarSalida(resultado) {
     return JSON.parse(respuesta);
 }
 
-app.post('/', async(req, res) => {
+app.post('/calcular-recibo', async(req, res) => {
+    const objCalcular = req.body;
+    console.log(objCalcular);
+
+    let resultado = await obtenerCalculo(objCalcular);
+    resultado = mejorarSalida(resultado);
+
+    res.json({
+        resultado,
+        mensaje: "operacion exitosa"
+    });
+});
+
+app.post('/obtener-departamento', async(req, res) => {
+    const objCalcular = req.body;
+    console.log(objCalcular);
+
+    let resultado = await obtenerCalculo(objCalcular);
+    resultado = mejorarSalida(resultado);
+
+    res.json({
+        resultado,
+        mensaje: "operacion exitosa"
+    });
+});
+
+app.post('/obtener-municipios', async(req, res) => {
     const objCalcular = req.body;
     console.log(objCalcular);
 
