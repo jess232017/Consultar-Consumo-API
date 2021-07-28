@@ -1,0 +1,254 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-158" />
+    <!-- or -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO8859-15" />
+    <meta http-equiv="X-UA-Compatible" content="IE=100">
+
+
+    <link href="../../CSS/redmond/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <LINK REL="stylesheet" TYPE="text/css" HREF="../../CSS/Tabla.css">
+    <LINK REL="stylesheet" TYPE="text/css" HREF="../../CSS/General.css">
+    <style>
+        .letra_blanca {
+            font-size: 12px;
+            color: white;
+            font-family: Arial;
+        }
+    </style>
+    <script type="text/javascript" src="../../Scripts/jquery.js"></script>
+    <script type="text/javascript" src="../../Scripts/jqueryUI.js"></script>
+    <script type="text/javascript" src="../../Scripts/jqueryUIDatePickerES.js"></script>
+    <script type="text/javascript" src="../../Scripts/FuncionJS.js"></script>
+    <script type="text/javascript" src="../../Scripts/CalculoFactura.js"></script>
+
+</head>
+
+<body topmargin="0" onLoad="Window_OnLoad();">
+    <table width="655" border="0" cellpadding="0" cellspacing="0" class="punteado" align="center">
+
+    </table>
+    <form id="form1" name="form1" method="POST" style="margin:0 auto;display:none;">
+        <div class="PanForm" style="width:950px; margin: 0 auto; float:none; display: inline-block;border-color:darkgray; ">
+
+            <!-- GB: INICIO - Parametros del C�lculo -->
+
+            <label style="width:950px; height:30px;float:left; background-color:#BCCEF2; border:1px solid lightskyblue;" class="LblSeccion" align="center">Verificador de Factura de Energ&iacute;a El&eacute;ctrica</label>
+            <div style="width:600px;margin-left:10px;float:left;">
+                <div style="float:left;width:100%;">
+                    <div>
+                        <label id="LblTarifa" name="LblTarifa" class="LblEstandar" style="width:145px; ">Tarifa:</label>
+                        <select name="CboTarifa" id="CboTarifa" class="CboEstandar" style="width:200px;" onChange="CboTarifa_OnChange(this);">
+                                <option value="0">[Tarifa]</option>
+                                <option  value='1' >T-0</option>
+                                <option  value='2' >T-1</option> 
+                                <option  value='42' >T-1 A-H</option> 
+                                <option  value='3' >T-1A</option>
+                                <option  value='62' >T-1E</option>
+                                <option  value='41' >T1-H</option>
+                                <option  value='4' >T-2</option>
+                                <option  value='22' >T-2 D-H</option> 
+                                <option  value='23' >T-2 E-H</option>
+                                <option  value='28' >T-2D</option>
+                                <option  value='29' >T-2E</option>
+                                <option  value='43' >T-2-H</option>
+                                <option  value='5' >T-3</option> 
+                                <option  value='45' >T-3 A-H</option> <option  value='6' >T-3A</option> 
+                                <option  value='61' >T-3E</option> <option  value='44' >T3-H</option> 
+                                <option  value='7' >T-4</option> <option  value='24' >T-4 D-H</option>
+                                 <option  value='25' >T-4 E-H</option> <option  value='30' >T-4D</option>
+                                  <option  value='31' >T-4E</option> <option  value='46' >T-4-H</option> 
+                                  <option  value='8' >T-5</option> <option  value='26' >T-5 D-H</option> 
+                                  <option  value='27' >T-5 E-H</option> <option  value='32' >T-5D</option>
+                                   <option  value='33' >T-5E</option> <option  value='47' >T-5-H</option>
+                                    <option  value='9' >T-6</option> <option  value='10' >T-6A</option>
+                                     <option  value='11' >T-6B</option> <option  value='16' >T-6C</option> 
+                                     <option  value='17' >T-6D</option> <option  value='18' >T-6E</option> 
+                                     <option  value='35' >T-7</option> <option  value='36' >T-7A</option> 
+                                     <option  value='57' >T-7AE</option> <option  value='37' >T-7B</option> 
+                                     <option  value='59' >T-7BE</option> <option  value='19' >T-7C</option> 
+                                     <option  value='58' >T-7CE</option> <option  value='20' >T-7D</option> <option  value='56' >T-7DE</option> <option  value='21' >T-7E</option> <option  value='38' >T-8</option> <option  value='39' >T-8B</option> <option  value='40' >T-9</option> <option  value='13' >T-A</option> <option  value='14' >T-B</option> <option  value='48' >TB-6</option> <option  value='49' >TB-6A</option> <option  value='50' >TB-6B</option> <option  value='51' >TB-6C</option> <option  value='52' >TB-6D</option> <option  value='53' >TB-6E</option> <option  value='15' >T-C</option> <option  value='12' >T-J</option> <option  value='54' >TPC</option> <option  value='34' >TR</option> <option  value='55' >TRB</option>
+                        </select>
+                    </div>
+                    <div style="padding:0;">
+                        <a class="LnkEstandar" id="LnkAyuda" style="padding:0;margin-left:5px;" onClick="LnkAyuda_OnClick();"><label style="margin-bottom:5px;font-size:12px;">Ayuda para ingresar datos de su Factura</label><img src="../../imagenes/Ayuda.png"  style="boder-style:none;padding:0px;margin:0px;"/></a>
+                    </div>
+                </div>
+                <div style="float:left;width:100%;">
+                    <label id="LblMunicipio" name="LblMunicipio" class="LblEstandar" style="width:145px;">Departamento/Municipio: </label>
+                    <select name="CboDepartamento" id="CboDepartamento" class="CboEstandar" style="width:200px;" onChange="CboDepartamento_OnChange(this);">
+                                <option value="0">[Departamento]</option>
+                                 <option value='17'>Atl�ntico Norte</option> <option value='18'>Atl�ntico Sur</option> <option value='9'>Boaco</option> <option value='14'>Carazo</option> <option value='6'>Chinandega</option> <option value='12'>Chontales</option> <option value='5'>Estel�</option> <option value='13'>Granada</option> <option value='3'>Jinotega</option> <option value='7'>Le�n</option> <option value='4'>Madriz</option> <option value='10'>Managua</option> <option value='11'>Masaya</option> <option value='8'>Matagalpa</option> <option value='2'>Nueva Segovia</option> <option value='16'>R�o San Juan de Nicaragua</option> <option value='15'>Rivas</option>
+            </select>
+
+                    <select name="CboMunicipio" Id="CboMunicipio" style="width:200px;margin-left:5px;" class="CboEstandar" style="background-image:url(../../recursos/img/glossyback.gif)">
+                        <option value="0">[Municipio]</option>
+
+            </select>
+                </div>
+                <div style="float:left;width:100%;">
+                    <div style="float:left;padding-left:0;margin-left:0px;">
+                        <label id="LblFechaFacturaAnterior" name="LblFechaFacturaAnterior" class="LblEstandar" style="width:145px;">Per&iacute;odo de 
+consumo:</label>
+                        <input name="TxtFechaFacturaAnterior" type="text" id="TxtFechaFacturaAnterior" style="width:80px;" onChange="TxtFechaFacturaAnterior_OnChange(this);" size="10" class="TxtEstandar" value="">
+                    </div>
+                    <div style="float:left; padding-left:3px;">
+                        <label name="LblFechaFactura" id="LblFechaFactura" class="LblEstandar" style="width:20px; float:left;padding-top:2px;">Al</label>
+                        <input name="TxtFechaFactura" type="text" id="TxtFechaFactura" style="width:80px;" onChange="TxtFechaFactura_OnChange(this);" size="10" class="TxtEstandar" value="">
+                    </div>
+                    <div>
+                        <label name="LblDiasFacturados" id="LblDiasFacturados" class="LblEstandar" style=" float:left;padding-top:2px;"></label>
+
+
+                    </div>
+                    <div style="width:100%;float:left;text-align:left;">
+                        <label class="LblMini" style="margin:0px;margin-left:145px;">(dd-mm-aaaa)</label>
+                        <label class="LblMini" style="margin:0px;margin-left:50px;">(dd-mm-aaaa)</label>
+
+                    </div>
+                </div>
+
+                <div id="DivConsumos" style="float:left;width:580px;">
+                    <fieldset id="FlsEnergia" style="display:none;width:245px;float:left;padding:6px;">
+                        <legend class="LblMini LblNegrita">Consumo kWh:</legend>
+                        <div id="DivEnergia" style="width:245px;float:left;">
+                            <!-- Energ&iacute;a -->
+                            <div id="DivActiva" name="DivActiva">
+                                <label id="LblActiva" name="LblActiva" class="LblEstandar" style="width:150px;">Activa kWh: </label>
+                                <input name="TxtActiva" id="TxtActiva" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event);" onKeyUp="CalcularDiasFacturados();" value="" />
+                            </div>
+                            <div id="DivActivaPunta" name="DivActivaPunta" style="height:20px;">
+                                <label id="LblActivaPunta" name="LblActivaPunta" class="LblEstandar" style="width:150px;">Activa Punta kWh: </label>
+                                <input name="TxtActivaPunta" id="TxtActivaPunta" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                            </div>
+                            <div id="DivActivaFueraPunta" name="DivActivaFueraPunta">
+                                <label id="LblActivaFueraPunta" name="LblActivaFueraPunta" class="LblEstandar" style="width:150px;">Activa Fuera de Punta kWh: </label>
+                                <input name="TxtActivaFueraPunta" id="TxtActivaFueraPunta" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- Demanda -->
+                    <fieldset id="FlsDemanda" style="display:none;width:265px;margin-left:20px;float:left;padding:6px;">
+                        <legend class="LblMini LblNegrita">Demanda KW</legend>
+                        <div id="DivPotencia" style="width:265px;float:left;">
+                            <div id="DivDemanda" name="DivDemanda">
+                                <label id="LblDemanda" name="LblDemanda" style="width:170px;" class="LblEstandar">Demanda KW: </label>
+                                <input name="TxtDemanda" id="TxtDemanda" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                            </div>
+                            <div id="DivDemandaPunta" name="DivDemandaPunta" style="height:20px;">
+                                <label id="LblDemandaPunta" name="LblDemandaPunta" style="width:170px;" class="LblEstandar">Demanda Punta KW: </label>
+                                <input name="TxtDemandaPunta" id="TxtDemandaPunta" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                            </div>
+                            <div id="DivDemandaFueraPunta" name="DivDemandaFueraPunta">
+                                <label id="LblDemandaFueraPunta" name="LblDemandaFueraPunta" style="width:170px;" class="LblEstandar">Demanda 
+Fuera de Punta KW: </label>
+                                <input name="TxtDemandaFueraPunta" id="TxtDemandaFueraPunta" type="text" maxlength="10" size="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- Reactiva -->
+                    <div id="DivReactiva" name="DivReactiva" style="display:none;width:100%px;padding:0px;margin:0px;clear:left;padding-top:5px;padding-left:12px; ">
+                        <label id="LblReactiva" name="LblReactiva" style="width:150px;" class="LblEstandar">Reactiva: </label>
+                        <input name="TxtReactiva" id="TxtReactiva" type="text" size="10" maxlength="10" class="TxtEstandar" onKeyPress="return LP_data(event)" value="" />
+                    </div>
+                </div>
+
+
+                <div style="float:left;" class="LblEstandar">
+                    <label style="width:360px;" class="LblEstandar">&#191;Refleja su factura el concepto de Alumbrado P&uacute;blico?:</label>
+
+
+                    <input type="radio" name="RdbCalcularAP" value="Si">Si
+                    <input type="radio" name="RdbCalcularAP" value="No" checked>No
+                </div>
+                <div style="float:left; width:100%; text-align:left;">
+                    <fieldset style="width:540px;">
+                        <div style="float:left;margin:0;">
+                            <div style="Float:left; width:170px;background-color:white;">
+                                <img src="../../Captcha/captcha.php" name="captcha" id="captcha" style="float:left; border:solid 1px gray;" /><br/>
+                                <a href="#" onClick="document.getElementById('captcha').src='../../Captcha/captcha.php?'+Math.random();" id="change-image" class="LnkEstandar lblMini" style="float:left;width:100%; text-align:center;">Otra palabra</a>
+                            </div>
+                            <div style="Float:left;background-color:white; width:300px;">
+                                <label class="LblEstandar" style="width:100%;margin-bottom:5px;">Escriba la palabra que aparece en la imagen:</label><br>
+                                <input type="text" name="TxtCaptcha" id="TxtCaptcha" class="TxtEstandar" />
+
+                                <!--<input type="image" src="../../imagenes/calculo.gif" width="90" height="18"/>-->
+                                <input id="BtnCalcular" name="BtnCalcular" class="BtnEstandar" type="submit" value="Calcular Factura" style="margin-left:2px;" onClick="return BtnCalcular_OnClick();">
+                            </div>
+
+                            <div id="DivMensaje" name="DivMensaje" class="ui-state-error ui-corner-all" style="padding: 3px;float:left;width:99%;Display:none; ">
+                                <span class="ui-icon ui-icon-alert" style="float: left; margin-right: 2px;"></span>
+                                <label id="LblMensaje" name="LblMensaje" style="width:90%;" class="LblEstandar">Contenido.</label>
+                            </div>
+
+
+                        </div>
+
+                    </fieldset>
+                </div>
+
+            </div>
+            <div class="ui-corner-all" id="PanAyuda" style="width:298px; height:220px;float:left;border:1px solid skyblue; padding:5px; background-color:#F4FBFF;">
+
+                <p class="LblInfo" style="text-align:justify;">
+
+                    <b>Ingrese los datos de su factura</b> a verificar, seguidamente escriba la palabra mostrada en la imagen y presione el bot&oacute;n <b>Calcular Factura</b>.
+                    <br>
+                    <br> En la parte inferior se mostrar&aacute; el <b>detalle de la factura calculada</b> junto con un listado de <b>sugerencias para
+                disminuir el importe total</b> y una secci&oacute;n que contiene las <b>definiciones</b> principales de los conceptos que afectan directamente el c&aacute;lculo de la misma
+
+                </p>
+                <br> <br>
+                <a href="http://www.ine.gob.ni/index.php/herramientas/#1511208310690-932fee76-2f00" style="font-size:12px; position:relative; bottom:5px; right:5px;">Ver hist&oacute;rico de Factura</a>
+            </div>
+
+            <!-- GB: FIN - Parametros del C�lculo -->
+
+
+            <!-- GB: INICIO - Resultado de C�lculo -->
+
+        </div>
+        <!-- GB: FIN - Resultado de C�lculo -->
+
+
+        </div>
+
+        <!-- GB: INICIO - Mensaje Modal -->
+        <div id="dialog-message" title="C&aacute;lculo Realizado" style="display:none;">
+
+            <p style="text-align:justify;display: inline-block;float:left;">
+                La factura ha sido calculada.
+            </p>
+
+        </div>
+
+        <!-- GB: FIN - Mensaje Modal -->
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+        <input type="hidden" name="HfIsPostBack" id="HfIsPostBack" value="1" />
+        <input type="hidden" name="HfConsumo" id="HfConsumo" value="" />
+        <input type="hidden" name="HfDiasFacturados" id="HfDiasFacturados" value="" />
+        <input type="hidden" name="HfPromedioConsumo" id="HfPromedioConsumo" value="" />
+        <input type="hidden" name="HfBaseCalculo" id="HfBaseCalculo" value="" />
+        <input type="hidden" name="HfMensaje" id="HfMensaje" value="" />
+
+    </form>
+
+    <div id="PanMensajeJavascript" name="PanMensajeJavascript" style="width:890px;margin: auto;">
+        <br>
+        <label class="LblSeccion">Su navegador no soporta Javascript o tiene Inactivo el uso de Javascript!. Para consultar la p&aacute;gina Web actual, debe 
+asegurar que el Navegador pueda ejecutar Javascript.</label>
+    </div>
+
+
+    <div id="PanImangeFactura" name="PanImangeFactura" title="Par&aacute;metros de C&aacute;lculo" style="background-image:url('../../imagenes/AyudaCalculoFactura.png');background-repeat:no-repeat;">
+
+    </div>
+
+</body>
+
+</html>
