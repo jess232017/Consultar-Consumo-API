@@ -2,6 +2,7 @@ import express from 'express';
 import axios from 'axios';
 import qs from 'qs';
 import { reciboToJson, selectToJson } from './utils/parser.js'
+import { departamentos, tarifas } from './utils/response.js'
 
 
 const app = express();
@@ -130,20 +131,18 @@ app.post('/calcular-recibo', async(req, res) => {
     });
 });
 
-app.get('/obtener-tarifas', async(req, res) => {
-    let resultado = await getTarifas();
-
+app.get('/obtener-tarifas', (req, res) => {
+    //let resultado = await getTarifas();
     res.json({
-        resultado,
+        resultado: tarifas,
         mensaje: "operacion exitosa"
     });
 });
 
-app.get('/obtener-departamentos', async(req, res) => {
-    let resultado = await getDepartamentos();
-
+app.get('/obtener-departamentos', (req, res) => {
+    // let resultado = await getDepartamentos();
     res.json({
-        resultado,
+        resultado: departamentos,
         mensaje: "operacion exitosa"
     });
 });
