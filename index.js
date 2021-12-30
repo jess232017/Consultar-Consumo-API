@@ -15,20 +15,24 @@ const port = process.env.PORT || 4001;
 async function getFactura(objCalcular) {
     const url = "https://www.ine.gob.ni/DGE/CalculoFactura/CalculoFactura.php";
 
+    const { TxtActiva, RdbCalcularAP } = objCalcular;
+    const { TxtFechaFacturaAnterior, TxtFechaFactura } = objCalcular;
+    const { CboTarifa, CboDepartamento, CboMunicipio } = objCalcular;
+
     const data = qs.stringify({
-        'CboTarifa': '1',
-        'CboDepartamento': '11',
-        'CboMunicipio': '106',
-        'TxtFechaFacturaAnterior': objCalcular.TxtFechaFacturaAnterior,
-        'TxtFechaFactura': objCalcular.TxtFechaFactura,
-        'TxtActiva': objCalcular.TxtActiva,
+        CboTarifa,
+        CboDepartamento,
+        CboMunicipio,
+        TxtFechaFacturaAnterior,
+        TxtFechaFactura,
+        TxtActiva,
         'TxtActivaPunta': '',
         'TxtActivaFueraPunta': '',
         'TxtDemanda': '',
         'TxtDemandaPunta': '',
         'TxtDemandaFueraPunta': '',
         'TxtReactiva': '',
-        'RdbCalcularAP': objCalcular.RdbCalcularAP,
+        RdbCalcularAP,
         'TxtCaptcha': 'lento',
         'BtnCalcular': 'Calcular Factura',
         '__EVENTTARGET': 'BtnCalcular',
@@ -41,18 +45,17 @@ async function getFactura(objCalcular) {
         'HfMensaje': ''
     });
 
-    const config = {
-        method: 'post',
-        url,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cookie': 'PHPSESSID=9g8fq44mje3jr35sb250ee12m2'
-        },
-        data: data
-    };
-
     try {
-        const respuesta = await axios(config);
+        const respuesta = await axios({
+            method: 'post',
+            url,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Cookie': 'PHPSESSID=9g8fq44mje3jr35sb250ee12m2'
+            },
+            data: data
+        });
+        //console.log(respuesta);
         return await reciboToJson(respuesta.data);
     } catch (error) {
         console.log(error);
@@ -121,7 +124,7 @@ async function getMunicipios(department) {
 }
 
 
-app.post('/calcular-recibo', async(req, res) => {
+app.post('/calcular-recibo', async (req, res) => {
     const objCalcular = req.body;
     let resultado = await getFactura(objCalcular);
 
@@ -147,7 +150,7 @@ app.get('/obtener-departamentos', (req, res) => {
     });
 });
 
-app.post('/obtener-municipios', async(req, res) => {
+app.post('/obtener-municipios', async (req, res) => {
     const department = req.body.department;
 
     let resultado = await getMunicipios(department);

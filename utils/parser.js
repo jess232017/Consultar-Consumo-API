@@ -3,6 +3,7 @@ import HTML from 'html-parse-stringify';
 
 
 export function reciboToJson(entrada) {
+    
 
     //Eliminar elementos que no son del recibo
     let posicion = entrada.indexOf('<table border="0"');
