@@ -15,6 +15,7 @@ const port = process.env.PORT || 4001;
 async function getFactura(objCalcular) {
     const url = "https://www.ine.gob.ni/DGE/CalculoFactura/CalculoFactura.php";
 
+    console.log(objCalcular);
     const { TxtActiva, RdbCalcularAP } = objCalcular;
     const { TxtFechaFacturaAnterior, TxtFechaFactura } = objCalcular;
     const { CboTarifa, CboDepartamento, CboMunicipio } = objCalcular;
@@ -26,23 +27,17 @@ async function getFactura(objCalcular) {
         TxtFechaFacturaAnterior,
         TxtFechaFactura,
         TxtActiva,
-        'TxtActivaPunta': '',
-        'TxtActivaFueraPunta': '',
-        'TxtDemanda': '',
-        'TxtDemandaPunta': '',
-        'TxtDemandaFueraPunta': '',
-        'TxtReactiva': '',
+        TxtActivaPunta: '',
+        TxtActivaFueraPunta: '',
+        TxtDemanda: '',
+        TxtDemandaPunta: '',
+        TxtDemandaFueraPunta: '',
+        TxtReactiva: '',
         RdbCalcularAP,
-        'TxtCaptcha': 'lento',
-        'BtnCalcular': 'Calcular Factura',
-        '__EVENTTARGET': 'BtnCalcular',
-        '__EVENTARGUMENT': 'lento',
-        'HfIsPostBack': '1',
-        'HfConsumo': '30 días (4.50 kWh por día).',
-        'HfDiasFacturados': '30',
-        'HfPromedioConsumo': '4.50',
-        'HfBaseCalculo': '1',
-        'HfMensaje': ''
+        TxtCaptcha: 'lento',
+        BtnCalcular: 'Calcular Factura',
+        __EVENTTARGET: 'BtnCalcular',
+        __EVENTARGUMENT: 'lento',
     });
 
     try {
@@ -55,8 +50,9 @@ async function getFactura(objCalcular) {
             },
             data: data
         });
-        //console.log(respuesta);
-        return await reciboToJson(respuesta.data);
+        const resultado = reciboToJson(respuesta.data);
+        console.log(resultado);
+        return await resultado;
     } catch (error) {
         console.log(error);
     }
